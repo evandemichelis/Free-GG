@@ -12,7 +12,7 @@ const AppStack = createBottomTabNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar barStyle={'default'} />
       <AppStack.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {

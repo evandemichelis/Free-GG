@@ -1,11 +1,9 @@
 import { StatusBar } from 'expo-status-bar'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import BottomNavBar from '../components/BottomNavBar'
 import React from 'react'
-import { Props } from '../services/api/types'
 
 export default function Settings() {
-  return <Text>settings</Text>
+  return <Text>Settings</Text>
 }
 
 const styles = StyleSheet.create({
