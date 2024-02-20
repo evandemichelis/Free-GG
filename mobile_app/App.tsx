@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import Home from './pages/Home'
 import Games from './pages/Games'
 import Settings from './pages/Settings'
@@ -13,6 +12,7 @@ const AppStack = createBottomTabNavigator()
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar barStyle={'light-content'} />
       <AppStack.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -42,7 +42,10 @@ export default function App() {
                   <Ionicons name="square-outline" size={size} color={color} />
                 )
             }
-          }
+          },
+          tabBarActiveTintColor: 'orange',
+          tabBarInactiveTintColor: 'gray',
+          headerShown: false
         })}
       >
         <AppStack.Screen name="Home" component={Home} />
