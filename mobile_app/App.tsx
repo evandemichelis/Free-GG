@@ -5,15 +5,46 @@ import Home from './pages/Home'
 import Games from './pages/Games'
 import Settings from './pages/Settings'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 const AppStack = createBottomTabNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <AppStack.Navigator>
+      <AppStack.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            switch (route.name) {
+              case 'Home':
+                return focused ? (
+                  <Ionicons name="home" size={size} color={color} />
+                ) : (
+                  <Ionicons name="home-outline" size={size} color={color} />
+                )
+              case 'Games':
+                return focused ? (
+                  <Ionicons name="game-controller" size={size} color={color} />
+                ) : (
+                  <Ionicons name="game-controller-outline" size={size} color={color} />
+                )
+              case 'Settings':
+                return focused ? (
+                  <Ionicons name="settings" size={size} color={color} />
+                ) : (
+                  <Ionicons name="settings-outline" size={size} color={color} />
+                )
+              default:
+                return focused ? (
+                  <Ionicons name="square" size={size} color={color} />
+                ) : (
+                  <Ionicons name="square-outline" size={size} color={color} />
+                )
+            }
+          }
+        })}
+      >
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="Games" component={Games} />
         <AppStack.Screen name="Settings" component={Settings} />
