@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const BottomNavBar = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.bar}>
       <TouchableOpacity style={styles.tab}>
         <Text style={styles.tabText}>Home</Text>
       </TouchableOpacity>
@@ -18,7 +18,7 @@ const BottomNavBar = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  bar: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
