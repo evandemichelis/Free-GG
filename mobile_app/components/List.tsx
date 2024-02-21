@@ -9,7 +9,7 @@ const Card = (props: IDataGame) => {
       <View style={styles.content}>
         <Text style={styles.title}>{props.title}</Text>
         <View>
-          <Text style={styles.description}>{props.genre}</Text>
+          <Text style={styles.genre}>{props.genre}</Text>
         </View>
       </View>
     </View>
@@ -20,9 +20,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'navy',
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 15,
     flexDirection: 'row',
-    maxWidth: '100%'
+    maxWidth: '100%',
+    marginHorizontal: 10
   },
   image: {
     width: 160,
@@ -36,13 +37,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
     maxWidth: 230,
-    marginRight: 10
+    marginRight: 10,
+    fontWeight: '600'
   },
-  description: {
+  genre: {
     color: 'black',
-    fontSize: 15,
+    fontSize: 12,
+    fontWeight: '600',
     backgroundColor: 'white',
     borderRadius: 10,
     marginTop: 10,

@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View, ScrollView } from 'react-native'
+import { Button, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { fetchGames } from '../services/api/games/requests'
@@ -12,18 +12,29 @@ export default function Home() {
     try {
       const response = await fetchGames()
       const fetchedGames = response.data
-      let indexes = []
+      let indexes: number[] = []
       for (let i = 0; i < 10; i++) {
         let index = Math.floor(Math.random() * fetchedGames.length)
         while (indexes.includes(index)) {
           index = Math.floor(Math.random() * fetchedGames.length)
         }
         indexes.push(index)
-        setGames((prev) => [...prev, fetchedGames[index]])
       }
+      const selectedGames = indexes.map((index) => fetchedGames[index])
+      setGames(selectedGames)
+      return Promise.resolve()
     } catch (error) {
       console.error('Error fetching games:', error)
+      return Promise.reject(error)
     }
+  }
+
+  const [data, setData] = useState([])
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = () => {
+    setRefreshing(true)
+    getRandomGames().then(() => setRefreshing(false))
   }
 
   useEffect(() => {
@@ -33,7 +44,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
-      <ScrollView>
+      <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         {games.map((game, index) => (
           <Card key={index} {...game} />
         ))}
@@ -44,12 +55,13 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center'
+    backgroundColor: 'black'
   },
   title: {
     color: 'white',
-    fontSize: 30
+    fontSize: 30,
+    textAlign: 'center',
+    fontWeight: '600',
+    marginBottom: 5
   }
 })

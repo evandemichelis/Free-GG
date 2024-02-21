@@ -29,12 +29,13 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center'
+    backgroundColor: 'black'
   },
   title: {
     color: 'white',
-    fontSize: 30
+    fontSize: 30,
+    textAlign: 'center',
+    fontWeight: '600',
+    marginBottom: 5
   }
 })
