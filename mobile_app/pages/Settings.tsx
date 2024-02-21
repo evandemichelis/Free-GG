@@ -21,7 +21,7 @@ export default function Settings() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'navy',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   body: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     height: '100%',
     width: '100%'
   },
   box: {
     backgroundColor: 'navy',
-    margin: 15,
+    marginHorizontal: 5,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'
