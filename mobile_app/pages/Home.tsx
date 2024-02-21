@@ -7,13 +7,32 @@ import { useLinkProps } from '@react-navigation/native'
 
 export default function Home() {
   const [games, setGames] = useState([])
+
+  const getRandomGames = async () => {
+    try {
+      const response = await fetchGames()
+      const fetchedGames = response.data
+      let indexes = []
+      for (let i = 0; i < 10; i++) {
+        let index = Math.floor(Math.random() * fetchedGames.length)
+        while (indexes.includes(index)) {
+          index = Math.floor(Math.random() * fetchedGames.length)
+        }
+        indexes.push(index)
+        setGames((prev) => [...prev, fetchedGames[index]])
+      }
+    } catch (error) {
+      console.error('Error fetching games:', error)
+    }
+  }
+
   useEffect(() => {
-    fetchGames().then((response) => setGames(response.data))
+    getRandomGames()
   }, [])
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Free GG</Text>
+      <Text style={styles.title}>Home</Text>
       <ScrollView>
         {games.map((game, index) => (
           <Card key={index} {...game} />
@@ -26,11 +45,11 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     alignItems: 'center'
   },
   title: {
-    color: 'black',
+    color: 'white',
     fontSize: 30
   }
 })

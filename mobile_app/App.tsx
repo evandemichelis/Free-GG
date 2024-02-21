@@ -43,9 +43,12 @@ export default function App() {
                 )
             }
           },
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'gray',
-          headerShown: false
+
+          tabBarActiveTintColor: 'royalblue',
+          tabBarInactiveTintColor: 'white',
+          headerShown: false,
+          tabBarStyle: { backgroundColor: 'black' },
+          tabBarLabel: () => null
         })}
       >
         <AppStack.Screen name="Home" component={Home} />
@@ -61,7 +64,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'orange',
     paddingVertical: 10,
     position: 'absolute',
     bottom: 0,
@@ -73,6 +75,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tabText: {
-    color: 'white'
+    color: 'seagreen'
   }
 })
