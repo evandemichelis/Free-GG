@@ -1,11 +1,12 @@
-import { Button, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native'
+import { Button, StyleSheet, Text, View, ScrollView, RefreshControl, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { fetchGames } from '../services/api/games/requests'
 import Card from '../components/List'
 import { useLinkProps } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 
-export default function Home() {
+export default function Home({ navigation, route }) {
   const [games, setGames] = useState([])
 
   const getRandomGames = async () => {
@@ -46,7 +47,9 @@ export default function Home() {
       <Text style={styles.title}>Home</Text>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         {games.map((game, index) => (
-          <Card key={index} {...game} />
+          <TouchableOpacity key={index} onPress={() => navigation.navigate('DetailScreen', { GameID: game.id })}>
+            <Card key={index} {...game} />
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

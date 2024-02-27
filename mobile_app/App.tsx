@@ -6,6 +6,7 @@ import Settings from './pages/Settings'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { GameStack, HomeStack } from './Stack/Stacks'
 
 const AppStack = createBottomTabNavigator()
 
@@ -17,13 +18,13 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             switch (route.name) {
-              case 'Home':
+              case 'HomeStack':
                 return focused ? (
                   <Ionicons name="home" size={size} color={color} />
                 ) : (
                   <Ionicons name="home-outline" size={size} color={color} />
                 )
-              case 'Games':
+              case 'GameStack':
                 return focused ? (
                   <Ionicons name="game-controller" size={size} color={color} />
                 ) : (
@@ -51,8 +52,8 @@ export default function App() {
           tabBarLabel: () => null
         })}
       >
-        <AppStack.Screen name="Home" component={Home} />
-        <AppStack.Screen name="Games" component={Games} />
+        <AppStack.Screen name="HomeStack" component={HomeStack} />
+        <AppStack.Screen name="GameStack" component={GameStack} />
         <AppStack.Screen name="Settings" component={Settings} />
       </AppStack.Navigator>
     </NavigationContainer>

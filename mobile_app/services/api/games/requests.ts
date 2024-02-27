@@ -5,3 +5,9 @@ export const fetchGames = async () => {
     return response
   })
 }
+
+export const fetchGamesByID = async (id) => {
+  return await api.get(`/game?id=${id}`).then((response) => {
+    return response
+  })
+}
