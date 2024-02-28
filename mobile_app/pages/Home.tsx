@@ -58,7 +58,8 @@ export default function Home({ navigation, route }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    paddingBottom: 45
   },
   title: {
     color: 'white',

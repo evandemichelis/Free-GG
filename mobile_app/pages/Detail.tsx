@@ -3,14 +3,15 @@ import IDataGame from '../interfaces/IDataGame'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { fetchGamesByID } from '../services/api/games/requests'
+import DetailID from '../components/DetailID'
 
 export default function Detail({ navigation, route }) {
-  const [game, setgame] = useState<IDataGame | null>(null)
   const { GameID } = route.params
+  const [details, setDetails] = useState<IDataGame | null>(null)
 
   useEffect(() => {
-    fetchGamesByID(GameID).then((data) => {
-      console.log(data, 'data')
+    fetchGamesByID(GameID).then((response) => {
+      setDetails(response.data)
     })
   }, [])
 
@@ -21,9 +22,8 @@ export default function Detail({ navigation, route }) {
       </View>
       <View style={styles.body}>
         <View style={styles.box}>
-          <Text style={styles.plateforme}>PC</Text>
-          <Text style={styles.plateforme}>Browser</Text>
-          <Text style={styles.plateforme}>All</Text>
+          <Text style={styles.plateforme}>Details</Text>
+          {details && <Text style={styles.plateforme}>{details.genre}</Text>}
         </View>
       </View>
     </View>
