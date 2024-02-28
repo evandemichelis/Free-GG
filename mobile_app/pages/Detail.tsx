@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar'
 import IDataGame from '../interfaces/IDataGame'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { fetchGamesByID } from '../services/api/games/requests'
-import DetailID from '../components/DetailID'
 
 export default function Detail({ navigation, route }) {
   const { GameID } = route.params
@@ -17,13 +16,23 @@ export default function Detail({ navigation, route }) {
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.title}>{GameID}</Text>
-      </View>
+      <View style={styles.container}>{details && <Text style={styles.title}>{details.title}</Text>}</View>
       <View style={styles.body}>
         <View style={styles.box}>
-          <Text style={styles.plateforme}>Details</Text>
-          {details && <Text style={styles.plateforme}>{details.genre}</Text>}
+          <View style={styles.image_container}>
+            {details && <Image style={styles.image} source={{ uri: details.thumbnail }}></Image>}
+          </View>
+          {details && <Text style={styles.description}>{details.short_description}</Text>}
+          {details && (
+            <Text style={styles.infos}>
+              {details.genre} available on {details.platform}
+            </Text>
+          )}
+          <View>
+            {details && <Text style={styles.infos}>Realised on {details.release_date}</Text>}
+            {details && <Text style={styles.infos}>Developed by {details.developer}</Text>}
+            {details && <Text style={styles.infos}>Published by {details.publisher}</Text>}
+          </View>
         </View>
       </View>
     </View>
@@ -51,13 +60,32 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: 'navy',
     marginHorizontal: 5,
-    borderRadius: 10,
+    borderRadius: 10
+  },
+  image_container: {
     alignItems: 'center'
   },
-  plateforme: {
+  image: {
+    objectFit: 'fill',
+    marginTop: 10,
+    width: '95%',
+    height: 200,
+    borderRadius: 10
+  },
+  description: {
+    marginTop: 10,
     color: 'white',
-    paddingHorizontal: 5,
     fontWeight: '600',
-    fontSize: 20
+    fontSize: 16,
+    textAlign: 'justify',
+    marginHorizontal: 10,
+    marginBottom: 10
+  },
+  infos: {
+    color: 'white',
+    fontWeight: '600',
+    textAlign: 'justify',
+    marginLeft: 10,
+    marginBottom: 10
   }
 })
