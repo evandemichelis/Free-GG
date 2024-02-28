@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import IDataGame from '../interfaces/IDataGame'
-import { Button, StyleSheet, Text, View, Image } from 'react-native'
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { fetchGamesByID } from '../services/api/games/requests'
 
@@ -23,15 +23,17 @@ export default function Detail({ navigation, route }) {
             {details && <Image style={styles.image} source={{ uri: details.thumbnail }}></Image>}
           </View>
           {details && <Text style={styles.description}>{details.short_description}</Text>}
-          {details && (
-            <Text style={styles.infos}>
-              {details.genre} available on {details.platform}
-            </Text>
-          )}
-          <View>
+          <View style={styles.infos_container}>
+            {details && <Text style={styles.infos}>{details.genre}</Text>}
+            {details && <Text style={styles.infos}>Available on {details.platform}</Text>}
             {details && <Text style={styles.infos}>Realised on {details.release_date}</Text>}
             {details && <Text style={styles.infos}>Developed by {details.developer}</Text>}
             {details && <Text style={styles.infos}>Published by {details.publisher}</Text>}
+            {details && (
+              <TouchableOpacity onPress={() => Linking.openURL(details.game_url)}>
+                <Text style={styles.link}>Play Now !</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
@@ -81,11 +83,27 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginBottom: 10
   },
+  infos_container: {},
   infos: {
-    color: 'white',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    color: 'black',
     fontWeight: '600',
     textAlign: 'justify',
     marginLeft: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 10
+  },
+  link: {
+    color: 'white',
+    backgroundColor: 'red',
+    alignSelf: 'flex-start',
+    paddingHorizontal: 10,
+    marginLeft: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    fontWeight: '600',
+    fontSize: 20
   }
 })
