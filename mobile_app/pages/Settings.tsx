@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   box: {
+    paddingTop: '45%',
     marginHorizontal: 5,
     borderRadius: 10,
     alignItems: 'center',
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 17
   },
   activeButton: {
-    backgroundColor: 'blue'
+    backgroundColor: 'navy'
   },
   inactiveButton: {
     backgroundColor: 'gray'
