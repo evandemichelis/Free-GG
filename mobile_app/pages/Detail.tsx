@@ -79,14 +79,14 @@ const styles = StyleSheet.create({
   },
   screenshot: {
     objectFit: 'fill',
-    marginTop: 10,
-    width: '46%',
-    height: 100,
-    borderRadius: 5,
-    marginHorizontal: 5
+    marginTop: 7,
+    width: '47%',
+    height: 110,
+    borderRadius: 10,
+    marginHorizontal: 4
   },
   description: {
-    marginTop: 10,
+    marginTop: 5,
     color: 'white',
     fontWeight: '600',
     fontSize: 16,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     color: 'black',
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 18,
     textAlign: 'justify',
     marginLeft: 10,
     marginBottom: 10,
@@ -110,23 +110,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   infos_container2: {
-    backgroundColor: 'white',
-    marginHorizontal: 10,
-    borderRadius: 10,
-    marginVertical: 5,
-    paddingVertical: 5
+    marginHorizontal: 5,
+    borderRadius: 10
   },
   infos2: {
-    backgroundColor: 'white',
     borderRadius: 10,
-    color: 'black',
+    color: 'white',
     fontWeight: '600',
     fontSize: 16,
-    textAlign: 'justify',
     marginLeft: 5,
-    marginBottom: 5,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 10
+    marginBottom: 5
   },
   link: {
     color: 'white',
@@ -137,6 +130,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     fontWeight: '600',
-    fontSize: 30
+    fontSize: 30,
+    marginTop: 5
   }
 })
