@@ -126,11 +126,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
-    marginLeft: 115,
+    paddingLeft: 15,
+    marginLeft: 110,
     marginBottom: 10,
     borderRadius: 10,
     fontWeight: '600',
     fontSize: 30,
-    marginTop: 5
+    marginTop: 5,
+    borderWidth: 3,
+    borderColor: 'black'
   }
 })
