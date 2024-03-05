@@ -2,14 +2,27 @@ import { useEffect } from 'react'
 import IDataGame from '../interfaces/IDataGame'
 import { Button, StyleSheet, Text, View, Image } from 'react-native'
 
+const mapPlatform = (platform: string) => {
+  switch (platform) {
+    case 'PC (Windows)':
+      return 'PC'
+    case 'Web Browser':
+      return 'Browser'
+    default:
+      return platform
+  }
+}
+
 const Card = (props: IDataGame) => {
+  const platformToShow = mapPlatform(props.platform)
   return (
     <View style={styles.container}>
       <Image source={{ uri: props.thumbnail }} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{props.title}</Text>
-        <View>
+        <View style={styles.caracterisctics}>
           <Text style={styles.genre}>{props.genre}</Text>
+          <Text style={styles.genre}>{platformToShow}</Text>
         </View>
       </View>
     </View>
@@ -42,6 +55,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
     fontWeight: '600'
   },
+  caracterisctics: {
+    flexDirection: 'row'
+  },
   genre: {
     color: 'black',
     fontSize: 12,
@@ -51,7 +67,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 10,
     paddingVertical: 2,
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    marginRight: 10
   }
 })
 

@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 30,
     marginTop: 5,
-    borderWidth: 3,
-    borderColor: 'black'
+    borderWidth: 1,
+    borderColor: 'white'
   }
 })
