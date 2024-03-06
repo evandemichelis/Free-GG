@@ -1,8 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 
 export default function Settings() {
+  const navigation = useNavigation()
+
   const [pcChecked, setPcChecked] = useState(false)
   const [browserChecked, setBrowserChecked] = useState(false)
   const [allChecked, setAllChecked] = useState(true)

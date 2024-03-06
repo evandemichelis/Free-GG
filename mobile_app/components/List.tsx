@@ -55,16 +55,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
     fontWeight: '600'
   },
-  caracterisctics: {
-    flexDirection: 'row'
-  },
+  caracterisctics: {},
   genre: {
     color: 'black',
     fontSize: 12,
     fontWeight: '600',
     backgroundColor: 'white',
     borderRadius: 10,
-    marginTop: 10,
+    marginTop: 5,
     paddingHorizontal: 10,
     paddingVertical: 2,
     alignSelf: 'flex-start',
