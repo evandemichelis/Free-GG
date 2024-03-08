@@ -1,45 +1,9 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { NavigationContainer } from '@react-navigation/native'
 
 export default function Settings() {
   const navigation = useNavigation()
-
-  const [pcChecked, setPcChecked] = useState(false)
-  const [browserChecked, setBrowserChecked] = useState(false)
-  const [allChecked, setAllChecked] = useState(true)
-
-  const handlePcChange = () => {
-    setPcChecked(true)
-    setBrowserChecked(false)
-    setAllChecked(false)
-  }
-
-  const handleBrowserChange = () => {
-    setPcChecked(false)
-    setBrowserChecked(true)
-    setAllChecked(false)
-  }
-
-  const handleAllChange = () => {
-    setPcChecked(false)
-    setBrowserChecked(false)
-    setAllChecked(true)
-  }
-
-  const renderButton = (title, onPress, checked) => {
-    return (
-      <TouchableHighlight
-        style={[styles.buttonContainer, checked ? styles.activeButton : styles.inactiveButton]}
-        onPress={onPress}
-        underlayColor="transparent"
-      >
-        <Text style={styles.buttonText}>{title}</Text>
-      </TouchableHighlight>
-    )
-  }
 
   return (
     <View>
@@ -48,9 +12,17 @@ export default function Settings() {
       </View>
       <View style={styles.body}>
         <View style={styles.box}>
-          {renderButton(`PC ${pcChecked ? 'On' : 'Off'}`, handlePcChange, pcChecked)}
-          {renderButton(`Browser ${browserChecked ? 'On' : 'Off'}`, handleBrowserChange, browserChecked)}
-          {renderButton(`All ${allChecked ? 'On' : 'Off'}`, handleAllChange, allChecked)}
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>PC</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>Browser</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <Text style={styles.buttonText}>All</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -90,7 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'white',
+    backgroundColor: 'navy'
   },
   buttonText: {
     color: 'white',

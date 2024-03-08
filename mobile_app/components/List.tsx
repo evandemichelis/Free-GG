@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import IDataGame from '../interfaces/IDataGame'
-import { Button, StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 
-const mapPlatform = (platform: string) => {
+const mapPlatform = (platform) => {
   switch (platform) {
     case 'PC (Windows)':
       return 'PC'
@@ -14,7 +13,6 @@ const mapPlatform = (platform: string) => {
 }
 
 const Card = (props: IDataGame) => {
-  const platformToShow = mapPlatform(props.platform)
   return (
     <View style={styles.container}>
       <Image source={{ uri: props.thumbnail }} style={styles.image} />
@@ -22,7 +20,7 @@ const Card = (props: IDataGame) => {
         <Text style={styles.title}>{props.title}</Text>
         <View style={styles.caracterisctics}>
           <Text style={styles.genre}>{props.genre}</Text>
-          <Text style={styles.genre}>{platformToShow}</Text>
+          <Text style={styles.genre}>{mapPlatform(props.platform)}</Text>
         </View>
       </View>
     </View>

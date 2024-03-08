@@ -1,10 +1,8 @@
-import { Button, StyleSheet, Text, View, ScrollView, RefreshControl, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, RefreshControl, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { fetchGames } from '../services/api/games/requests'
 import Card from '../components/List'
-import { useLinkProps } from '@react-navigation/native'
-import { NavigationContainer } from '@react-navigation/native'
 
 export default function Home({ navigation, route }) {
   const [games, setGames] = useState([])
