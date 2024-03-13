@@ -7,22 +7,20 @@ import { useMyContext } from '../Context/Context'
 
 export default function Home({ navigation, route }) {
   const [games, setGames] = useState([])
+  const [refreshing, setRefreshing] = useState(false)
+  const { platform } = useMyContext()
 
   const getRandomGames = async () => {
     try {
       const response = await fetchGames()
-      const fetchedGames = response.data
-      let indexes: number[] = []
 
-      for (let i = 0; i < 10; i++) {
-        let index = Math.floor(Math.random() * fetchedGames.length)
-        while (indexes.includes(index)) {
-          index = Math.floor(Math.random() * fetchedGames.length)
-        }
-        indexes.push(index)
-      }
+      const filteredGames = response.data.filter((game) => platform === 'All' || game.platform.includes(platform))
 
-      const selectedGames = indexes.map((index) => fetchedGames[index])
+      const selectedGames =
+        filteredGames.length >= 10
+          ? getRandomSubset(filteredGames, 10)
+          : getRandomSubset(filteredGames.concat(filteredGames), 10)
+
       setGames(selectedGames)
       return Promise.resolve()
     } catch (error) {
@@ -31,14 +29,12 @@ export default function Home({ navigation, route }) {
     }
   }
 
-  const [refreshing, setRefreshing] = useState(false)
+  const getRandomSubset = (array, size) => array.sort(() => 0.5 - Math.random()).slice(0, size)
 
   const onRefresh = () => {
     setRefreshing(true)
     getRandomGames().then(() => setRefreshing(false))
   }
-
-  const { platform } = useMyContext()
 
   useEffect(() => {
     getRandomGames()
@@ -48,13 +44,11 @@ export default function Home({ navigation, route }) {
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        {games
-          .filter((game) => platform === 'All' || game.platform.includes(platform))
-          .map((game, index) => (
-            <TouchableOpacity key={index} onPress={() => navigation.navigate('DetailScreen', { GameID: game.id })}>
-              <Card key={index} {...game} />
-            </TouchableOpacity>
-          ))}
+        {games.map((game, index) => (
+          <TouchableOpacity key={index} onPress={() => navigation.navigate('DetailScreen', { GameID: game.id })}>
+            <Card key={index} {...game} />
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   )

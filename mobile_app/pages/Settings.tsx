@@ -12,7 +12,6 @@ export default function Settings() {
       </View>
       <View style={styles.body}>
         <View style={styles.box}>
-          <Text>{platform}</Text>
           <View style={styles.container}>
             <TouchableOpacity style={styles.buttonContainer} onPress={() => setPlatform('PC')}>
               <Text style={styles.buttonText}>PC</Text>
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   body: {
-    backgroundColor: 'navy',
+    backgroundColor: 'black',
     height: '100%',
     width: '100%'
   },

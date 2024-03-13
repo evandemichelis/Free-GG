@@ -7,6 +7,8 @@ const mapPlatform = (platform) => {
       return 'PC'
     case 'Web Browser':
       return 'Browser'
+    case 'PC (Windows), Web Browser':
+      return 'PC and Browser'
     default:
       return platform
   }
