@@ -12,6 +12,8 @@ const mapPlatform = (platform) => {
   }
 }
 
+export default mapPlatform
+
 const Card = (props: IDataGame) => {
   return (
     <View style={styles.container}>

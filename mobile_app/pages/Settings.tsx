@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { useMyContext } from '../Context/Context'
 
 export default function Settings() {
-  const navigation = useNavigation()
+  const { platform, setPlatform } = useMyContext()
 
   return (
     <View>
@@ -12,14 +12,15 @@ export default function Settings() {
       </View>
       <View style={styles.body}>
         <View style={styles.box}>
+          <Text>{platform}</Text>
           <View style={styles.container}>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => setPlatform('PC')}>
               <Text style={styles.buttonText}>PC</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => setPlatform('Browser')}>
               <Text style={styles.buttonText}>Browser</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => setPlatform('All')}>
               <Text style={styles.buttonText}>All</Text>
             </TouchableOpacity>
           </View>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   body: {
-    backgroundColor: 'black',
+    backgroundColor: 'navy',
     height: '100%',
     width: '100%'
   },

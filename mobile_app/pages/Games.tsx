@@ -3,15 +3,21 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { fetchGames } from '../services/api/games/requests'
 import Card from '../components/List'
+import { useMyContext } from '../Context/Context'
 
 export default function Home({ navigation, route }) {
   const [games, setGames] = useState([])
+  const { platform, setPlatform } = useMyContext()
 
   useEffect(() => {
     fetchGames().then((response) => {
-      setGames(response.data)
+      const filteredGames = response.data.filter((game) => {
+        return platform === 'All' || game.platform.includes(platform)
+      })
+
+      setGames(filteredGames)
     })
-  }, [])
+  }, [platform])
 
   return (
     <View style={styles.container}>
