@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { fetchGames } from '../services/api/games/requests'
 import Card from '../components/List'
+import { useMyContext } from '../Context/Context'
 
 export default function Home({ navigation, route }) {
   const [games, setGames] = useState([])
@@ -12,6 +13,7 @@ export default function Home({ navigation, route }) {
       const response = await fetchGames()
       const fetchedGames = response.data
       let indexes: number[] = []
+
       for (let i = 0; i < 10; i++) {
         let index = Math.floor(Math.random() * fetchedGames.length)
         while (indexes.includes(index)) {
@@ -19,6 +21,7 @@ export default function Home({ navigation, route }) {
         }
         indexes.push(index)
       }
+
       const selectedGames = indexes.map((index) => fetchedGames[index])
       setGames(selectedGames)
       return Promise.resolve()
@@ -28,7 +31,6 @@ export default function Home({ navigation, route }) {
     }
   }
 
-  const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = () => {
@@ -36,19 +38,23 @@ export default function Home({ navigation, route }) {
     getRandomGames().then(() => setRefreshing(false))
   }
 
+  const { platform } = useMyContext()
+
   useEffect(() => {
     getRandomGames()
-  }, [])
+  }, [platform])
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        {games.map((game, index) => (
-          <TouchableOpacity key={index} onPress={() => navigation.navigate('DetailScreen', { GameID: game.id })}>
-            <Card key={index} {...game} />
-          </TouchableOpacity>
-        ))}
+        {games
+          .filter((game) => platform === 'All' || game.platform.includes(platform))
+          .map((game, index) => (
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('DetailScreen', { GameID: game.id })}>
+              <Card key={index} {...game} />
+            </TouchableOpacity>
+          ))}
       </ScrollView>
     </View>
   )
