@@ -22,7 +22,7 @@ const Card = (props: IDataGame) => {
       <Image source={{ uri: props.thumbnail }} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{props.title}</Text>
-        <View style={styles.caracterisctics}>
+        <View style={styles.caracteristics}>
           <Text style={styles.genre}>{props.genre}</Text>
           <Text style={styles.genre}>{mapPlatform(props.platform)}</Text>
         </View>
@@ -38,11 +38,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     flexDirection: 'row',
     maxWidth: '100%',
+    maxHeight: 200,
     marginHorizontal: 10
   },
   image: {
-    width: 160,
-    height: 100,
+    width: 180,
+    height: '100%',
     borderRadius: 10,
     objectFit: 'fill'
   },
@@ -52,12 +53,13 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 18,
-    maxWidth: 230,
-    marginRight: 10,
-    fontWeight: '600'
+    fontSize: 17,
+    fontWeight: '600',
+    textAlign: 'center'
   },
-  caracterisctics: {},
+  caracteristics: {
+    marginBottom: 10
+  },
   genre: {
     color: 'black',
     fontSize: 12,
