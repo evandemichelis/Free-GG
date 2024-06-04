@@ -1,2 +1,1 @@
-# Groupe de demich_e 1026388
-
+React Native mobile application linked to the database api freetogame. 
